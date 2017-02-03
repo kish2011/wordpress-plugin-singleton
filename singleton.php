@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 if( ! class_exists( 'Singleton_Plugin_Illustration' ) ) {
 
   final class Singleton_Plugin_Illustration {
-    
+
     /**
     * Stores the instance
     */
@@ -44,6 +44,11 @@ if( ! class_exists( 'Singleton_Plugin_Illustration' ) ) {
     }
 
     /**
+    * Protect constructor from outside
+    */
+    private function __construct() {}
+
+    /**
     * Outputs a WordPress notification ensuring that the singleton is working
     */
     public function notify_user() {
@@ -57,26 +62,12 @@ if( ! class_exists( 'Singleton_Plugin_Illustration' ) ) {
       <?php
     }
 
-    /**
-    * Disable cloning.
-    */
-    public function __clone() {
-      //Throw error here.
-    }
-
-    /**
-    * Disable unserializing.
-    */
-    public function __wakeup() {
-      //Throw error here.
-    }
-
   }
 
 }
 
 /**
-* This function can be used by other plugins or themes to access any public API's this plugin offers.
+* This function can be used by other plugins and themes to access any public API's this plugin offers.
 */
 function SingletonPluginIllustration() {
   return Singleton_Plugin_Illustration::instance();
