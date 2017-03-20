@@ -8,6 +8,8 @@
  * Version: 1.0
  * Text Domain: singleton
  * Domain Path: languages
+ *
+ * @package Singleton Example
  */
 
 // Exit if accessed directly.
@@ -16,15 +18,22 @@ if ( ! defined( 'ABSPATH' ) ) { exit;
 
 if ( ! class_exists( 'Singleton_Plugin_Illustration' ) ) {
 
+	/**
+	 * The main plugin class/singleton
+	 */
 	final class Singleton_Plugin_Illustration {
 
 		/**
 		 * Stores the instance
+		 *
+		 * @var Singleton_Plugin_Illustration
 		 */
 		private static $instance;
 
 		/**
 		 * Stores the message to be displayed
+		 *
+		 * @var String
 		 */
 		private $message;
 
@@ -57,7 +66,7 @@ if ( ! class_exists( 'Singleton_Plugin_Illustration' ) ) {
 			?>
 
 			<div class="notice-info notice is-dismissible">
-		  <p><?php echo self::$instance->message; ?></p>
+		  <p><?php echo esc_html( self::$instance->message ); ?></p>
 			</div>
 
 			<?php
@@ -70,8 +79,8 @@ if ( ! class_exists( 'Singleton_Plugin_Illustration' ) ) {
 /**
  * This function can be used by other plugins and themes to access any public API's this plugin offers.
  */
-function SingletonPluginIllustration() {
+function singleton_plugin_illustration() {
 	return Singleton_Plugin_Illustration::instance();
 }
 
-SingletonPluginIllustration();
+singleton_plugin_illustration();
